@@ -1,0 +1,62 @@
+<header class="site-header">
+    <div class="topbar">
+        <div class="brand">
+                <a href="#" ui-sref="home"><img src='./assets/images/astellas_pharma.svg' /></a>
+        </div>
+
+        <div class="titles">
+            Executive Dashboard
+            <span class="page-title">{{th.pageTitle}}</span>
+        </div>
+        <div class="actions">
+            <button type="button" class="btn btn-clear btn-header"><i class="fa fa-question-circle"></i>Help</button>
+            
+            <div id="lastRelaod">
+                Last reload:<br>
+                {{ th.relaodTime | date:"MM/dd/yyyy 'at' h:mma" }}
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="navigation" ng-class="{'slideIn' : th.sidebarIn }">
+        <div class="hamburger" ng-class="{'active': th.sidebarIn }" ng-click="th.toggleSidebar()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li ui-sref-active="active">
+                <a href="" ui-sref="/">
+                    <span class="nav-label">Astellas Pharma US</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a href="" ui-sref="oncology">
+                    <span class="nav-label">Oncology</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a href="" ui-sref="urology">
+                    <span class="nav-label">Urology</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a href="" ui-sref="cardiovescular">
+                    <span class="nav-label">Cardiovescular</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a href="" ui-sref="immunology">
+                    <span class="nav-label">Immunology</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a href="" ui-sref="infectious-disease">
+                    <span class="nav-label">Infectious Disease</span>
+                </a>
+            </li>
+        </ul>
+        <reload-time></reload-time>
+</div>
