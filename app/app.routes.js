@@ -37,6 +37,3 @@ define('routes',function(){
     routeConfig.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
     return routeConfig;
 });
-
-
-

@@ -6,7 +6,7 @@ header.site-header {
         .actions .btn-header {
             margin-left: 15px;
             &:hover {
-                color: $orange;
+                color: $red;
             }
         }
     }
@@ -40,93 +40,8 @@ header.site-header {
     }
 }
 
-#CurrentSelections {
-    @include transition(margin-left .3s);
-    margin-left: 60px;
-    &.move {
-        margin-left: 250px;
-    }
-    .qv-panel-current-selections, .buttons .qv-subtoolbar-button, .buttons-end .qv-subtoolbar-button {
-        &.active {
-        }
-    }
-    .buttons-end {
-        div[tid="toggleGlobalSearchButton"] {
-            display: none;
-        }
-    }   
-}
-
-.custom-currentS-wrap {
-    display: inline-block; position: relative;
-    .currentS {
-        position: absolute;
-        z-index: 999;
-        top: 0;
-        right: 15px;
-        width: 400px;
-        max-height: 400px;
-        background-color: transparent;
-        padding: 40px 15px 15px 15px;
-        ul {
-            background-color: white; width: 100%; text-align: left;
-            position: relative; border-radius: 4px 0 4px 4px;
-            box-shadow: 1px 1px 10px;
-            li {
-                list-style: none; display: block; position: relative;
-                border-bottom: 1px solid #fafafa; padding: 15px;
-                .theField {
-                    background-color: $turquoise; color: rgb(233, 233, 233);
-                    font-size: 14px; padding: 5px; 
-                }
-                .theSel {
-                    display: block; margin-top: 5px;
-                }
-                .btn-close {
-                    position: absolute; right: 15px; top: 15px; font-size: 18px; color: #999;
-                    &:hover {
-                        color: #333;
-                    }
-                }
-                &:nth-of-type(even) {
-                    background-color: rgb(238, 238, 238);
-                }
-                &:first-of-type {
-                    border-radius: 4px 4px 0 0;
-                }
-                &:last-of-type {
-                    border-radius: 0 0 4px 4px;
-                    .fa {
-                        margin-right: 10px;
-                    }
-                }
-            }
-
-            &:before {
-                position: absolute;
-                top: -6px;
-                right: 0px;
-                display: inline-block !important;
-                border-right: 7px solid transparent;
-                border-bottom: 7px solid white;
-                border-left: 7px solid transparent;
-                content: '';
-            }
-        }
-    }
-}
-
-.selButton {
-    position: relative; margin-right: 30px;
-    .badge {
-        position: absolute; right: -5px; top: -15px;
-        background-color: $blue;
-    }
-}
-
 #navigation {
-    position: fixed; left: 0; top: 60px; bottom: 0; width: 60px;
-    z-index: 999; background-color: black;
+    position: fixed; left: 0; top: 60px; bottom: 0; width: 60px; z-index: 999;
     box-shadow: 6px 5px 11px rgba(0, 0, 0, 0.3);
     // @include transform(translateX(-100%));
     @include transition(width .3s);
@@ -148,17 +63,17 @@ header.site-header {
                 }
                 h3 {
                     padding-left: 15px;
-                    color: $grey1;
+                    color: $grey;
                 }
             }
             
             &.active {
-                a {  background-color: $turquoise; color: white; }
+                a {  background-color: red;}
             }
             a {
                 white-space: nowrap;
                 display: block; padding: 0 0 0 30px;
-                font-size: 16 px; line-height: 32px; color: white;
+                font-size: 16 px; line-height: 32px;
                 @include transition(background-color .3s, color .3s);
                 text-decoration: none;
                 &:hover {
@@ -184,75 +99,6 @@ header.site-header {
     }
 }
 
-.qv-global-selections {
-    left: 50px;
-    top: 98px;
-    z-index: 999;
-    height: calc(100vh - 98px) !important;
-    .qv-gs-section {
-        height: 75%;
-    }
-    .qv-gs-section[tid="globalSelections.bottomSection"] {
-        display: none;
-    }
-}
-
-#filters {
-    position: fixed; right: 0; top: 127px; bottom: 0; width: 250px;
-    z-index: 998; background-color: black;
-    padding: 15px;
-    @include transform(translateX(110%));
-    @include transition(transform .3s);
-    h3 {
-        color: white;
-    }
-    .filter {
-        > li {
-            margin: 0; padding: 0; 
-            margin-bottom: 15px;
-        }
-    }
-    &.slideIn {
-        @include transform(translateX(0));
-    }
-    .custom-dropdown {
-        position: relative;
-        #simple-dropdown {
-            width: 100%; text-align: left; position: relative;
-                .fa {
-                    position: absolute; right: 15px; top: 10px;
-                }
-        }
-        .dropdown {
-            max-height: 0; overflow: auto; display: block; margin: 0;
-            padding: 0; right: 0; top: 34px; left: 0; position: absolute; 
-            z-index: 9999;
-            background: white;  border-radius: 4px;
-            @include transition(max-height .3s);
-            li a {
-                color: black; padding: 5px 10px; display: block;
-                @include transition(background-color .3s);
-                &:hover {
-                    background-color: rgb(223, 223, 223);
-                }
-            }
-            li.S a {
-                background-color: #61a729; color: white;
-            }
-            li.O a {
-                background-color: white;
-            }
-            li.X a {
-                background-color: #999; color: white;
-            }
-            &.open {
-                margin-right: 5px;
-                max-height: 300px;
-            }
-        }
-    }
- }
-
 .hamburger {
     display: inline-block;
     cursor: pointer;
@@ -261,7 +107,7 @@ header.site-header {
         display: block;
         width: 20px;
         height: 3px;
-        background-color: $grey1;
+        background-color: grey;
         margin: 5px auto;
         @include transition(transform .3s, width .3s, background-color .3s);
     }
@@ -279,7 +125,7 @@ header.site-header {
     }
     &:hover {
         .bar {
-            background-color: white;
+            background-color: black;
         }
     }
 }
@@ -287,59 +133,4 @@ header.site-header {
 .lui-popover-container, .lui-dialog-container {
     position: fixed !important;
     z-index: 9999;
- }
-
-
- #bookmarksDD {
-     position: absolute; 
-     right: 0; width: 400px;
-     background-color: black; 
-     max-height: 0; @include transition(max-height .3s);
-     overflow: hidden; z-index: 999; color: white;
-     &.reveal {
-        max-height: 500px;
-     }
-     ul {
-        padding: 15px; padding-bottom: 0;
-        li {
-            margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 15px;
-            position: relative; padding-right: 30px;
-            a {
-                color: white; display: block;
-                span {
-                    display: block;
-                    font-size: 14px; color: #b9b9b9;
-                }
-                &:hover {
-                    color: $orange;
-                }
-            }
-            .remove {
-                background: transparent; border: 0;
-                position: absolute; right: 0; top: 15px;
-                color: #767676;
-                &:hover {
-                    color: red;
-                }
-            }
-            &:last-of-type {
-                border-bottom: 1px solid white;
-            }
-        }
-
-        #createBM {
-            .btn {
-                padding: 7px; border-width: 1px; background-color: $turquoise;
-            }
-        }
-        .btn-primary {
-            width: 100%; margin: 5px auto;
-            &:hover {
-                background-color: darken($turquoise,10%);
-            }
-        }
-        #closeBookmakrs {
-            display: block; margin: 15px auto;
-        }
-     }
- }
+}

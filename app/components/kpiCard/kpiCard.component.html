@@ -1,4 +1,11 @@
-<div class="kpi-box panel">
+<div class="kpi-card panel">
+        <button><i class="fa fa-info-circle"></i></button>
+
         <div class="main-kpi" id="{{kc.mainKpi}}" ng-style="kc.styleAtt"></div>
-        <div class="mini-chart" id="{{kc.miniChart}}"></div>
+
+        <div class="chart-wrap">
+                <button class="btn btn-clean hidden-xs" ng-click="kc.expand()"><i class="fa fa-expand"></i></button>
+                <div class="mini-chart" id="{{kc.miniChart}}"></div>
+        </div>
+
 </div>

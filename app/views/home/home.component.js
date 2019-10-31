@@ -6,6 +6,7 @@
             homeController.$inject = ['qlikService'];
             function homeController(qlikService){
                 var vm = this;
+                vm.radioModel = 'sales'
 
                 vm.$onInit = function() {
                   

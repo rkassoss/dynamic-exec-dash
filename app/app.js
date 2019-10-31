@@ -32,21 +32,23 @@ require.config({
 
 // bootstrap the app
 require(["js/qlik"], function (qlik) {
-    qlik.setOnError( function ( error ) {
-		$( '#popupText' ).append( error.message + "<br>" );
-		$( '#popup' ).fadeIn( 1000 );
-	} );
-	$( "#closePopup" ).click( function () {
-		$( '#popup' ).hide();
-    } );
-    
+    var errors = [];
+    qlik.on("error", function(error){
+		//error handling
+		console.log('Qlik error', error);
+		errors.push(error); 
+		if(error.code === 16 || ["OnSessionTimedOut","OnSessionClosed"].indexOf(error.method)>-1){ 
+            document.getElementById('errorModal').style.display = 'block';
+            $('#errorModal').modal('show')
+		}
+	});
     require(["angular", 'ui.router', 'uibootstrap', "routes", 
 
             'home', 'oncology', 'urology', 'cardio', 'immunology', 'infectious',
            
             'topHeader',
 
-            'senseObject', 'expandModal', 'kpiCard', 'filterDropdown', 'dropdownSearch', 'createBookmarkModal',
+            'senseObject', 'expandModal', 'kpiCard', 'expandObject', 'filterDropdown', 'dropdownSearch', 'createBookmarkModal',
 
             'dataService', 'qlikService', 'currentSelectionsService', 'filterDropdownService'
     ],
@@ -56,7 +58,7 @@ require(["js/qlik"], function (qlik) {
 
             topHeader, 
             
-            senseObject, expandModal, kpiCard, filterDropdown, dropdownSearch, createBookmarkModal, 
+            senseObject, expandModal, kpiCard, expandObject, filterDropdown, dropdownSearch, createBookmarkModal, 
             
             dataService, qlikService,currentSelectionsService, filterDropdownService ) {
             app = angular.module('mashup-app', [
@@ -83,6 +85,7 @@ require(["js/qlik"], function (qlik) {
             app.component('topHeader',topHeader);
 
             app.component('kpiCard', kpiCard);
+            app.component('expandObject',expandObject);
             app.component('senseObject',senseObject);
             app.component('expandModal',expandModal);
             app.component('createBookmarkModal',createBookmarkModal);

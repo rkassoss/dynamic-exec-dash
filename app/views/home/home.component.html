@@ -1,1 +1,29 @@
-Astellas Pharma US
+<div class="panel">
+    <div class="panel-header">
+        Astellas Pharma US
+        <div class="btn-group">
+            <label class="btn btn-primary" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'sales'">Net Sales</label>
+            <label class="btn btn-primary" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'profits'">Opperating Profits</label>
+            <label class="btn btn-primary" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'more'">More</label>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div id="net_sales" ng-show="home.radioModel=='sales'">
+                <div class="row">
+                        <div class="col-md-6">
+                                <kpi-card main-kpi="pWFkeq" mini-chart="EyPvCby"></kpi-card>
+                        </div>
+                        <div class="col-md-6">
+                                <kpi-card main-kpi="mTZnb" mini-chart="rXdxcEn"></kpi-card>
+                        </div>
+                </div>
+                <div class="text-center">Projected Rating KPIs</div>
+        </div>
+        <div id="opp_profits" ng-show="home.radioModel=='profits'">
+            Opperating Profits Objects
+        </div>
+        <div id="more" ng-show="home.radioModel=='more'">
+            More Objects
+        </div>
+    </div>
+</div>
