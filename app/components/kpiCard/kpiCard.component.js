@@ -17,40 +17,26 @@
                     });
                 }
 
-                function getChangeKpis() {
-                    vm.changeKpis = [];
-                    angular.forEach(vm.changeKpiId, function(id, key){
-                        qlikService.getApp().visualization.get(id).then(function(vis) {
-                            objectsToDestroy.push(vis);
-                            vis.show(id);
-                        });
-                    });
-                }
-                
                 vm.$onInit = function() {
                     setTimeout(function() {
                         getMainKpi();
-                        getChangeKpis();
                     }, 300);
                 }
 
                 vm.$onDestroy = function() {
                     mainObject.close();
-                    angular.forEach(objectsToDestroy, function(obj,key){
-                        obj.close();
-                    });
                 }
             }
     
             return {
                 bindings: {
                     mainKpi: '@',
-                    changeKpiId: '=',
+                    miniChart: '@',
                     styleAtt: '@'
                 },
                 controller: kpiCardController,
-                controllerAs: 'kb',
-                templateUrl: '/app/components/kpiCard/kpiCard.component.html'
+                controllerAs: 'kc',
+                templateUrl: './app/components/kpiCard/kpiCard.component.html'
             }
         }
 

@@ -108,7 +108,7 @@
                     },
                     controller: senseObjectController,
                     controllerAs: 'so',
-                    templateUrl: extPath + '/app/components/senseObject/senseObject.directive.html'
+                    templateUrl: './app/components/senseObject/senseObject.directive.html'
                 }
             }
 

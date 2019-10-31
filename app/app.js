@@ -42,7 +42,7 @@ require(["js/qlik"], function (qlik) {
     
     require(["angular", 'ui.router', 'uibootstrap', "routes", 
 
-            'home',
+            'home', 'oncology', 'urology', 'cardio', 'immunology', 'infectious',
            
             'topHeader',
 
@@ -51,7 +51,8 @@ require(["js/qlik"], function (qlik) {
             'dataService', 'qlikService', 'currentSelectionsService', 'filterDropdownService'
     ],
         function (angular, uiRoute, uibootstrap, routes, 
-            home,
+
+            home, oncology, urology, cardio, immunology, infectious,
 
             topHeader, 
             
@@ -73,7 +74,12 @@ require(["js/qlik"], function (qlik) {
             
             app.config(routes);
             app.component('home',home);
-          
+            app.component('oncology',oncology);
+            app.component('urology',urology);
+            app.component('cardio',cardio);
+            app.component('immunology',immunology);
+            app.component('infectious',infectious);
+            
             app.component('topHeader',topHeader);
 
             app.component('kpiCard', kpiCard);

@@ -21,13 +21,24 @@ define( 'topHeader',function () {
             function toggleSidebar() {
                 vm.sidebarIn = !vm.sidebarIn;
             }
-            init();
-            function init() {
+
+            vm.$onInit = function() {
                 qlikService.getApp().getAppLayout(function(layout){
                     console.log(layout);
                     vm.relaodTime = layout.qLastReloadTime;
                     vm.appTitle = layout.qTitle;
                 });
+            }
+
+
+            vm.$onDestroy = function() {
+                console.log('destroy');
+                theObject.close();
+            }
+
+
+            vm.$onChanges = function(changes) {
+                
             }
         }
         return {

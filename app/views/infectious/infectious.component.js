@@ -1,12 +1,14 @@
 (function () {
     'use strict';
 
-    define('home',function(){
-        function home() {
-            homeController.$inject = ['qlikService'];
-            function homeController(qlikService){
-                var vm = this;
+    define('infectious', function(){
 
+
+        function infectious() {
+
+            function infectiousController(){
+                var vm = this;
+                
                 vm.$onInit = function() {
                   
                 }
@@ -19,20 +21,16 @@
                 vm.$onChanges = function(changes) {
                     
                 }
-                
             }
-    
+
             return {
                 bindings: {},
-                controller: homeController,
-                controllerAs: 'home',
-                templateUrl: './app/views/home/home.component.html'
+                controller: infectiousController,
+                controllerAs: 'ic',
+                templateUrl: './app/views/infectious/infectious.component.html'
             }
         }
-        return home();
+        return infectious();
     });
-
-
-    
 
 } ());

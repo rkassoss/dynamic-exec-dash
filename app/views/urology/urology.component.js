@@ -1,16 +1,17 @@
 (function () {
     'use strict';
 
-    define('home',function(){
-        function home() {
-            homeController.$inject = ['qlikService'];
-            function homeController(qlikService){
-                var vm = this;
+    define('urology', function(){
 
+
+        function urology() {
+
+            function urologyController(){
+                var vm = this;
+                
                 vm.$onInit = function() {
                   
                 }
-    
     
                 vm.$onDestroy = function() {
                     console.log('destroy');
@@ -19,20 +20,16 @@
                 vm.$onChanges = function(changes) {
                     
                 }
-                
             }
-    
+
             return {
                 bindings: {},
-                controller: homeController,
-                controllerAs: 'home',
-                templateUrl: './app/views/home/home.component.html'
+                controller: urologyController,
+                controllerAs: 'uc',
+                templateUrl: './app/views/urology/urology.component.html'
             }
         }
-        return home();
+        return urology();
     });
-
-
-    
 
 } ());
