@@ -1,10 +1,9 @@
-<div class="panel">
+<div class="panel" id="apus">
     <div class="panel-header">
-        Astellas Pharma US
+        <h3>Astellas Pharma US</h3>
         <div class="btn-group">
-            <label class="btn btn-primary" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'sales'">Net Sales</label>
-            <label class="btn btn-primary" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'profits'">Opperating Profits</label>
-            <label class="btn btn-primary" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'more'">More</label>
+            <label class="btn" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'sales'">Net Sales</label>
+            <label class="btn" ng-model="home.radioModel" ng-click="home.resize()" uib-btn-radio="'profits'">Opperating Profits</label>
         </div>
     </div>
     <div class="panel-body">
@@ -20,10 +19,29 @@
                 <div class="text-center">Projected Rating KPIs</div>
         </div>
         <div id="opp_profits" ng-show="home.radioModel=='profits'">
-            Opperating Profits Objects
+                <div class="row">
+                        <div class="col-md-6">
+                                <kpi-card main-kpi="XgRKXN" mini-chart="jcmwmph"></kpi-card>
+                        </div>
+                        <div class="col-md-6">
+                                <kpi-card main-kpi="YUvqwT" mini-chart="YhtnkNc"></kpi-card>
+                        </div>
+                </div>
+                <div class="text-center">Projected Rating KPIs</div>
         </div>
-        <div id="more" ng-show="home.radioModel=='more'">
-            More Objects
+    </div>
+</div>
+
+<div class="panel" id="tareas_summary">
+    <div class="panel-header">
+        <h3>Therapeutic Areas Budget Variance</h3>
+    </div>
+    <div class="panel-body">
+        <div class="flexrow">
+            <a ng-repeat="t in home.theraputicAreas" class="flexitem" ui-sref="{{t.state}}">
+                <!-- <h4>{{t.name}}</h4> -->
+                <kpi-card main-kpi="{{t.qlikid}}"></kpi-card>
+            </a>
         </div>
     </div>
 </div>

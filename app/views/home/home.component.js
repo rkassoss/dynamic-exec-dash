@@ -6,15 +6,33 @@
             homeController.$inject = ['qlikService'];
             function homeController(qlikService){
                 var vm = this;
-                vm.radioModel = 'sales'
+                vm.radioModel = 'sales';
+
+                vm.theraputicAreas = [
+                    {
+                        name:'Oncology',
+                        state: 'oncology',
+                        qlikid:'jTJajS'
+                    },{
+                        name:'Urology',
+                        state:'urology',
+                        qlikid:'unfjHf'
+                    },{
+                        name:'Cardiovascular',
+                        state:'cardio',
+                        qlikid: 'pFnjh'
+                    }
+                    
+                ];
+
+                vm.resize = function () {
+                    qlikObject.resize();
+                }
 
                 vm.$onInit = function() {
-                  
                 }
     
-    
                 vm.$onDestroy = function() {
-                    console.log('destroy');
                 }
     
                 vm.$onChanges = function(changes) {

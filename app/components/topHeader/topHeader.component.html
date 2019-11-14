@@ -1,31 +1,27 @@
 <header class="site-header">
     <div class="topbar">
         <div class="brand">
+                <div class="hamburger" ng-class="{'active': th.sidebarIn }" ng-click="th.toggleSidebar()">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+
                 <a href="#" ui-sref="home"><img src='./assets/images/astellas_pharma.svg' /></a>
         </div>
 
         <div class="titles">
             Executive Dashboard
-            <span class="page-title">{{th.pageTitle}}</span>
+            <span class="page-title"><i class="fa fa-angle-right"></i> {{th.pageTitle}}</span>
         </div>
         <div class="actions">
-            <button type="button" class="btn btn-clear btn-header"><i class="fa fa-question-circle"></i>Help</button>
-            
-            <div id="lastRelaod">
-                Last reload:<br>
-                {{ th.relaodTime | date:"MM/dd/yyyy 'at' h:mma" }}
-            </div>
+            <button type="button" class="btn btn-clean"><i class="fa fa-question-circle"></i>Help</button>
         </div>
     </div>
 </header>
 
 
 <div id="navigation" ng-class="{'slideIn' : th.sidebarIn }">
-        <div class="hamburger" ng-class="{'active': th.sidebarIn }" ng-click="th.toggleSidebar()">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-        </div>
         <ul class="nav-links">
             <li>
                 <a ui-sref-active="active" ui-sref="home">
@@ -58,5 +54,8 @@
                 </a>
             </li>
         </ul>
-        <reload-time></reload-time>
+        <div id="lastRelaod">
+            Last reload:<br>
+            {{ th.relaodTime | date:"MM/dd/yyyy 'at' h:mma" }}
+        </div>
 </div>

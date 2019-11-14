@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    define('expandObject', function(){
+    define('expandModal', function(){
 
 
-        function expandObject() {
-            expandObjectController.$inject = ['qlikService','$uibModal'];
-            function expandObjectController(qlikService, $uibModal){
+        function expandModal() {
+            expandModalController.$inject = ['qlikService','$uibModal'];
+            function expandModalController(qlikService, $uibModal){
                 var vm = this;
                 var object;
 
@@ -21,7 +21,7 @@
                     qlikService.getApp().getObject(
                         document.getElementById('modal_object'),
                         vm.resolve.qlikId,
-                        { noInteraction: false, noSelections: true }).then(function(vis){
+                        { noSelections: true }).then(function(vis){
                         console.log(vis);
                         object = vis;
                         vm.title = vis.layout.title;
@@ -41,12 +41,12 @@
                     close: '&',
                     dismiss: '&'
                 },
-                controller: expandObjectController,
-                controllerAs: 'eo',
-                templateUrl: './app/components/expandObject/expandObject.component.html'
+                controller: expandModalController,
+                controllerAs: 'em',
+                templateUrl: './app/components/expandModal/expandModal.component.html'
             }
         }
-        return expandObject();
+        return expandModal();
     });
 
 } ());

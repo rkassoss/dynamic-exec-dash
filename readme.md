@@ -8,4 +8,4 @@ Run 'gulp watch'
 
 Mashup is configured as an extension. Run build-dev and gulp watch when configured on Qlik Sense Desktop, it should open your browser with livereload on http://localhost:4848/extensions/astellas-exec/index.html#!/.
 
-To build for Qlik Sense Server, zip the project (without node_modules folder!) and install through the QMC.
+To build as a QS extension, zip the project (without node_modules folder!) and install through the QMC.

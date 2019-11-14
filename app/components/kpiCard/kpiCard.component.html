@@ -1,11 +1,25 @@
-<div class="kpi-card panel">
-        <button><i class="fa fa-info-circle"></i></button>
-
-        <div class="main-kpi" id="{{kc.mainKpi}}" ng-style="kc.styleAtt"></div>
-
-        <div class="chart-wrap">
-                <button class="btn btn-clean hidden-xs" ng-click="kc.expand()"><i class="fa fa-expand"></i></button>
-                <div class="mini-chart" id="{{kc.miniChart}}"></div>
+<div class="kpi-card">
+        <div class="kpi-wrap">
+                <div class="obj-header">
+                        <div class="obj-title">
+                                <h3>{{kc.title}}</h3>
+                        </div>
+                        <div class="obj-btns">
+                                <button class="btn btn-clean hidden-xs" ng-click="kc.description()"><i class="fa fa-info-circle"></i></button>
+                        </div>
+                </div>
+                <div class="main-kpi" id="{{kc.mainKpi}}" ng-style="kc.styleAtt"><div class="lds-dual-ring"></div></div>
         </div>
 
+        <div class="chart-wrap" ng-if="kc.miniChart">
+                <div class="obj-header">
+                        <div class="obj-title">
+
+                        </div>
+                        <div class="obj-btns">
+                                <button class="btn btn-clean hidden-xs" ng-click="kc.expand()"><i class="fa fa-expand"></i></button>
+                        </div>
+                </div>
+                <div class="mini-chart" id="{{kc.miniChart}}"><div class="lds-dual-ring"></div></div>
+        </div>
 </div>

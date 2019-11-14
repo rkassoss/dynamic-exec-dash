@@ -1,6 +1,6 @@
 header.site-header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-    box-shadow: 0px 2px 11px 0px rgba(0,0,0,.5);
+    background-color: white; box-shadow: inset 0 -1px 0 $red;
     .topbar {
         @include flexbox(); justify-content: space-between; height: 60px;
         .actions .btn-header {
@@ -11,40 +11,37 @@ header.site-header {
         }
     }
     .brand {
-        width: 250px; //sidebar width;
+        width: 200px; //sidebar width;
+        @include flexbox(); align-items: center; justify-content: space-between;
+        a {
+            display: block; flex: 1;
+        }
         img {
-            max-width: 100px;
+            max-width: 130px;
         }
     }
     #appTitle {
-        margin-left: 15px;
+        margin-left: 1rem;
     }
     .titles {
         @include flexbox(); align-items: center;
-        img { 
-            margin: 0 15px;
-        }
+        padding-left: 1rem;
+        font-weight: bold; color: $darkRed;
+    }
+    .page-title {
+        padding-left: 1rem; color: $darkGrey;
     }
     .actions {
         flex: 1;
-        @include flexbox(); justify-content: flex-end;
-        align-items: center;
-    }
-    #lastRelaod {
-        margin: 0 15px;
-        font-size: 13px;
-        line-height: 16px;
-        font-style: italic;
-        border-left: 1px solid #767676;
-        padding-left: 15px;
+        @include flexbox(); justify-content: flex-end; align-items: center;
     }
 }
 
 #navigation {
-    position: fixed; left: 0; top: 60px; bottom: 0; width: 60px; z-index: 999;
-    box-shadow: 6px 5px 11px rgba(0, 0, 0, 0.3);
+    position: fixed; left: -200px; top: 60px; bottom: 0; width: 200px; z-index: 999;
+    background-color: $lightGrey; overflow: hidden;
     // @include transform(translateX(-100%));
-    @include transition(width .3s);
+    @include transition(left .3s);
     > ul {
         @include transition(opacity .3s); opacity: .5;
         ul {
@@ -55,7 +52,7 @@ header.site-header {
     }
     .nav-links {
         li {
-            margin: 0; padding: 0; overflow: hidden;
+            margin: 0; padding: 0; overflow: hidden; border-bottom: 1px solid white;
             .groupTitle {
                 @include flexbox(); align-items: center;  padding-left: 15px;
                 img.group-icon {
@@ -66,29 +63,21 @@ header.site-header {
                     color: $grey;
                 }
             }
-            
-            &.active {
-                a {  background-color: red;}
-            }
             a {
-                white-space: nowrap;
-                display: block; padding: 0 0 0 30px;
-                font-size: 16 px; line-height: 32px;
-                @include transition(background-color .3s, color .3s);
-                text-decoration: none;
+                white-space: nowrap; display: block; padding: 1rem;
+                font-size: 16px; line-height: 32px; color: $darkGrey; font-weight: bold;
+                @include transition(all .3s, color .3s); text-decoration: none;
                 &:hover {
-                    background-color: rgb(36, 36, 36);
+                    background-color: rgb(218, 218, 218);
                 }
-                &.isDisabled {
-                    color: currentColor;
-                    cursor: not-allowed;
-                  }
+                &.active {
+                    color: $red; border-left: 1rem solid $red;
+                }
             }
         }
     }
     &.slideIn {
-        // @include transform(translateX(0));
-        width: 250px;
+        left: 0;
         > ul {
             opacity: 1;
             ul {
@@ -96,6 +85,18 @@ header.site-header {
                 max-height: 600px;
             }
         }
+        #lastRelaod {
+            opacity: 1;
+        }
+    }
+
+    #lastRelaod {
+        @include transition(opacity .3s);
+        position: absolute; bottom: 0; opacity: 0;
+        margin: 0; padding: 1rem;
+        font-size: 13px;
+        line-height: 16px;
+        font-style: italic;
     }
 }
 

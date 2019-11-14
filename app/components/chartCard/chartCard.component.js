@@ -2,11 +2,11 @@
     'use strict';
 
 
-        define( 'senseObject',function () {
+        define( 'chartCard',function () {
             
-            function senseObject() {
-                senseObjectController.$inject = ['dataService','qlikService','$uibModal'];
-                function senseObjectController(dataService,qlikService,$uibModal) {
+            function chartCard() {
+                chartCardController.$inject = ['dataService','qlikService','$uibModal'];
+                function chartCardController(dataService,qlikService,$uibModal) {
                     var vm = this;
                     var theObject;
 
@@ -14,10 +14,7 @@
 
                     vm.exportToExcel = exportToExcel;
                     vm.expand = expand;
-                    vm.exportPdf = exportPdf;
-                    vm.exportImg = exportImg;
-
-
+       
                     function exportToExcel() {
                         vm.model.exportData()
                             .then(function(reply){
@@ -41,46 +38,14 @@
                         });
                     }
 
-                    function exportImg() {
-                        if (vm.qsVersion == 'Sep18') {
-                            vm.model.exportImg()
-                            .then(function(reply){
-                                console.log(reply);
-                            });
-                        } else {
-                            alert('nope');
-                        }
-                    }
-
-                    function exportPdf() {
-                        if (vm.qsVersion == 'Sep18') {
-                            console.log(vm.model);
-                            vm.model.exportPdf()
-                                .then(function(result){
-                                    console.log('PDF Link:', result);
-                                });
-                        } else {
-                            alert('nope');
-                        }
-                    }
-
                     function getQlikObject() {
                         qlikService.getApp()
                         .visualization.get(vm.qlikId).then(function(vis){
-                            // console.log(vis);
-                            if(!vm.qlikTitle){
-                                vm.title = vis.model.layout.title;
-                            } else {
-                                vm.title = vm.qlikTitle;
-                            }
-                           
-                            vis.model.layout.showTitles = false;
-                            vis.show(vm.qlikId);
+                            vis.show(vm.qlikId, {noSelections: true});
                             theObject = vis;
                             vm.model = vis.model;
                         });
                     }
-
                     
                     vm.$onInit = function() {
                         setTimeout(function() {
@@ -106,12 +71,12 @@
                         qlikTitle: '@',
                         objectClass: '@',
                     },
-                    controller: senseObjectController,
-                    controllerAs: 'so',
-                    templateUrl: './app/components/senseObject/senseObject.directive.html'
+                    controller: chartCardController,
+                    controllerAs: 'cc',
+                    templateUrl: './app/components/chartCard/chartCard.component.html'
                 }
             }
 
-            return senseObject();
+            return chartCard();
         });
 } ());

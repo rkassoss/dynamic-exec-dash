@@ -10,10 +10,9 @@
                 vm.expand = expand;
 
                 function expand() {
-                    console.log(vm.miniChart);
                     var modalInstance = $uibModal.open({
                         animation: true,
-                        component: 'expandObject',
+                        component: 'expandModal',
                         size: 'lg',
                         resolve: {
                             qlikId: function () {
@@ -26,11 +25,23 @@
                 function getObjects() {
                     qlikService.getApp().visualization.get(vm.mainKpi).then(function(kpi){
                         kpiObject = kpi;
-                        kpi.show(vm.mainKpi);
-                        qlikService.getApp().visualization.get(vm.miniChart).then(function(chart){
-                            chartObject = chart;
-                            chart.show(vm.miniChart);
+                        kpi.model.layout.showTitles = false;
+                        vm.title = kpi.model.layout.title;
+                        kpi.model.Validated.bind(function(){
+                            kpi.model.layout.showTitles = false;
+                            vm.title = kpi.model.layout.title;
                         });
+                        if (vm.miniChart) {
+                            qlikService.getApp().visualization.get(vm.miniChart).then(function(chart){
+                                chartObject = chart;
+                                chart.model.layout.showTitles = false;
+                                chart.model.Validated.bind(function(){
+                                    chart.model.layout.showTitles = false;
+                                });
+                                chart.show(vm.miniChart, {noSelections: true});
+                            });
+                        }
+                        kpi.show(vm.mainKpi, {noSelections: true});
                     });
                 }
 
@@ -41,8 +52,8 @@
                 }
 
                 vm.$onDestroy = function() {
-                    mainObject.close();
-                    chartObject.close();
+                    kpiObject.close();
+                    if (chartObject) chartObject.close();
                 }
             }
     

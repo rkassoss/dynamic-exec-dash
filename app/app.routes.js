@@ -6,7 +6,7 @@ define('routes',function(){
         .state('home', {
             url: '/',
             template: '<home></home>',
-            title: 'Home'
+            title: 'Astellas Pharma US'
         })
         .state('oncology', {
             url: '/oncology',

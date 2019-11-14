@@ -1,4 +1,5 @@
 var qlikObject;
+var destroyableObjects = [];
 
 var prefix = window.location.pathname.substr( 0, window.location.pathname.toLowerCase().lastIndexOf( "/extensions" ) + 1 );
 var config = {
@@ -8,11 +9,19 @@ var config = {
 	isSecure: window.location.protocol === "https:"
 };
 
+// var config = {
+//      host: 'localhost',
+//      prefix: '/',
+//      port: 4848,
+//      isSecure: false
+// };
+
 // var appId = 'b5c165df-6761-4d0d-a950-060a0a3ccb96';
 var appId = 'Executive Dashboard.qvf';
 
-var base = window.location.origin + window.location.pathname
+var base = window.location.origin + window.location.pathname;
 var extPath = base.substr( 0, base.lastIndexOf( "/" ) );
+// var extPath = '';
 console.log(extPath);
 require.config({
     baseUrl: (config.isSecure ? "https://" : "http://") + config.host + (config.port ? ":" + config.port : "") + config.prefix + "resources",
@@ -48,7 +57,7 @@ require(["js/qlik"], function (qlik) {
            
             'topHeader',
 
-            'senseObject', 'expandModal', 'kpiCard', 'expandObject', 'filterDropdown', 'dropdownSearch', 'createBookmarkModal',
+            'chartCard', 'expandModal', 'kpiCard',
 
             'dataService', 'qlikService', 'currentSelectionsService', 'filterDropdownService'
     ],
@@ -58,7 +67,7 @@ require(["js/qlik"], function (qlik) {
 
             topHeader, 
             
-            senseObject, expandModal, kpiCard, expandObject, filterDropdown, dropdownSearch, createBookmarkModal, 
+            chartCard, expandModal, kpiCard,
             
             dataService, qlikService,currentSelectionsService, filterDropdownService ) {
             app = angular.module('mashup-app', [
@@ -85,13 +94,8 @@ require(["js/qlik"], function (qlik) {
             app.component('topHeader',topHeader);
 
             app.component('kpiCard', kpiCard);
-            app.component('expandObject',expandObject);
-            app.component('senseObject',senseObject);
+            app.component('chartCard',chartCard);
             app.component('expandModal',expandModal);
-            app.component('createBookmarkModal',createBookmarkModal);
-
-            app.component('filterDropdown', filterDropdown);
-            app.component('dropdownSearch',dropdownSearch);
 
             app.service('dataService', dataService);
             app.service('qlikService', qlikService);

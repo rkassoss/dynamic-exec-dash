@@ -1,10 +1,9 @@
 
 html {
-    font-size: 14px;
+    font-size: 16px;
 }
 body {
-    font-family: Arial, Helvetica, sans-serif !important; font-size: 15px;
-    background-color: rgb(240, 240, 240);
+    font-family: Arial, Helvetica, sans-serif !important; font-size: 1rem;
     a {
         color: $blue; font-weight: 500;
         @include transition(color .3s);
@@ -14,13 +13,23 @@ body {
         } 
     }
 }
+h1, h2, h3, h4 {
+    font-weight: 700;
+}
+
+.flexrow {
+    @include flexbox(); flex-direction: row; margin: 0 -1rem;
+    .flexitem {
+        flex: 1; margin: 0 1rem;
+    }
+}
 
 button, a {
     @include transition(background-color .3s, color .3s);
 }
 
 .btn {
-    display: block; padding: 10px; border: 0;
+    display: block; padding: 5px 10px; border: 0; border-radius: 0;
 }
 
 .btn.focus, .btn:focus, .btn:hover {
@@ -28,13 +37,13 @@ button, a {
 }
 
 .btn-primary {
-    background-color: $blue; color: white; border: 0; box-shadow: none;
+    background-color: $red; color: white; border: 0; box-shadow: none;
     .fa {
         margin-left: 10px;
     }
-    &:hover, &:focus {
+    &:hover, &:focus, &.active, &:active {
         border: 0;
-        background-color: darken($blue,10%);
+        background-color: darken($red,10%);
     }
 }
 
@@ -43,11 +52,11 @@ button, a {
 }
 
 #viewWrap {
-    @include transition(margin-left .3s);
-    margin-left: 65px;
-    padding-top: 120px;
+    @include transition(padding .3s);
+    padding-left: 15px;
+    padding-top: 60px;
     &.move {
-        margin-left: 250px;
+        padding-left: 215px;
     }
 }
 
@@ -63,20 +72,49 @@ ul {
 }
 
 .panel {
-    border: 0; margin-bottom: 30px; position: relative; border: 1px solid #f4f4f4;
+    border-radius: 0; border: 1px solid $lightGrey; margin: 1rem 0; position: relative;
+    &#apus {
+        .panel-header {
+            justify-content: normal;
+        }
+    }
     .panel-header {
-        padding: 15px 15px 0;
+        @include flexbox(); align-items: center; justify-content: space-between;
+        padding: 0 1rem; background-color: $lightGrey; height: 50px;
         h3 {
+            margin: 0; font-size: 1.25rem; color: $darkGrey;
             -webkit-text-overflow: ellipsis;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
         }
+        .btn-group {
+            margin-left: 1rem;
+            label {
+                color: $darkGrey; font-size: 1.25rem;
+                border: 1px solid white;
+                font-weight: bold;
+                border-radius: 5px;
+                @include transition(all .3s);
+                &.active {
+                    color: $red; background-color: white;
+                    &:hover {
+                        color: $red; background-color: white;
+                    }
+                }
+                &:hover {
+                    background-color: darken($lightGrey,10%);
+                }
+            }
+        }
     }
-    .chart-icons {
-        position: absolute; top: 0; left: 0; right: 0;
-        .btns-wrap {
-            float: right;
+    .obj-header {
+        @include flexbox(); justify-content: space-between;
+        h3 {
+            margin: 0;
+        }
+        .btn {
+            margin: 0 0 0 auto;
         }
     }
 }
@@ -91,6 +129,7 @@ ul {
     width: 100%;
     @include transition(opacity 1s);
     @include opacity(1);
+    @include flexbox(); justify-content: center; align-items: center;
     article.qv-object {
         header.qv-object-header {
             display: none;
@@ -105,34 +144,95 @@ ul {
     }
 }
 
-.naked-kpi {
-    color: black;
-    .value {
-        font-size: 24px;
-    }
-}
-
-.simpleObject {
-    width: 100%;
-    height: 300px;
-    &.kpiObject {
-        height: 200px;
-    }
-    &.filterObject {
-        height: 35px;
-    }
-}
-
 .modal-lg {
     width: 90%;
 }
 
 
 .kpi-card {
+    border: 1px solid #f4f4f4; padding: 1rem; @include flexbox(); flex-direction: column;
+    .kpi-wrap {
+        flex: 1;
+    }
+    .chart-wrap {
+        position: relative;
+        flex: 2;
+    }
     .main-kpi {
-        height: 60px;
+        @include flexbox(); justify-content: center; align-items: center;
+        height: 100px;
     }
     .mini-chart {
-        height: 110px;
+        @include flexbox(); justify-content: center; align-items: center;
+        height: 150px;
+    }
+}
+
+#tareas_summary {
+    .kpi-object {
+        height: 80px;
+    }
+}
+
+.initialKpis {
+    .mini-chart {
+        height: 100px;
+    }
+}
+
+
+.products {
+    .product {
+        overflow: hidden;
+        > .panel-header, >.panel-footer {
+            @include transition(background-color .3s);
+            cursor: pointer;
+            .fa {
+                font-size: 1.25rem;
+                @include transition(transform .3s);
+                transform: rotate(0);
+            }
+            &:hover {
+                background-color: darken($lightGrey,10%);
+            }
+        }
+        >.panel-footer {
+            text-align: center; padding: 0; border: 0; background-color: $lightGrey;
+        }
+        .productDetails {
+            max-height: 0; overflow: hidden;
+            opacity: 0; margin-top: 1rem;
+            @include transition(all .3s);
+            .uniqueKpis {
+                margin-bottom: 1rem;
+            }
+        }
+        &.showDetails {
+            >.panel-header, >.panel-footer {
+                .fa {
+                    transform: rotate(180deg);
+                }
+            }
+            .productDetails {
+                max-height: 2000px; opacity: 1;
+            }
+        }
+    }
+}
+
+main {
+    /* start 'enter' transition */
+    &.ng-enter {
+        /* transition on enter for .5s */
+        transition: .5s;
+
+        /* start with opacity 0 (invisible) */
+        opacity: 0;
+    }
+
+    /* end 'enter' transition */
+    &.ng-enter-active {
+        /* end with opacity 1 (fade in) */
+        opacity: 1;
     }
 }

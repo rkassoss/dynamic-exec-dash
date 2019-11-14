@@ -10,6 +10,7 @@ define( 'topHeader',function () {
 
             vm.stateName = $state.current.name;
 
+            vm.pageTitle = "Astellas Pharma US";
             $transitions.onSuccess({}, function(transition) {
                 vm.pageTitle = transition.to().title;
                 console.log(
@@ -20,6 +21,7 @@ define( 'topHeader',function () {
 
             function toggleSidebar() {
                 vm.sidebarIn = !vm.sidebarIn;
+                $('#viewWrap').toggleClass('move');
             }
 
             vm.$onInit = function() {

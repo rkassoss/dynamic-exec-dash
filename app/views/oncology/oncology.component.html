@@ -1,1 +1,68 @@
-Oncology View
+<div class="panel">
+    <div class="panel-header">
+        <h3>Oncology Net Sales FYTD</h3>
+    </div>
+    <div class="panel-body">
+                <div class="row">
+                        <div class="col-md-6">
+                                <kpi-card main-kpi="pWFkeq" mini-chart="EyPvCby"></kpi-card>
+                        </div>
+                        <div class="col-md-6">
+                                <kpi-card main-kpi="mTZnb" mini-chart="rXdxcEn"></kpi-card>
+                        </div>
+                </div>
+    </div>
+</div>
+
+<div class="products">
+    <div class="panel product" ng-repeat="p in oc.products track by $index" ng-class="oc.activeProduct===$index ? 'showDetails' : 'hideDetails'">
+            <div class="panel-header" ng-click="oc.activeProduct===$index ? oc.activeProduct = null : oc.activeProduct = $index; oc.handleObjects($index)">
+                <h3 class="title">{{p.name}}</h3>
+                <button class="btn btn-clean pull-right"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
+            </div>
+            <div class="panel-body">
+                    <div class="initialKpis">
+                        <div class="row">
+                            <div class="col-md-6" ng-repeat="k in p.mainKpis">
+                                <kpi-card main-kpi="{{k.kpi}}" mini-chart="{{k.chart}}"></kpi-card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productDetails">
+                            <div class="uniqueKpis flexrow">
+                                <div class="flexitem kpi-card" ng-repeat="hk in p.hiddenKpis track by $index">
+                                        <div class="kpi-wrap">
+                                                <div class="obj-header">
+                                                        <div class="obj-title">
+                                                                <h3>{{hk.title}}</h3>
+                                                        </div>
+                                                        <div class="obj-btns">
+                                                                <button class="btn btn-clean hidden-xs" ng-click="oc.showDescription(hk.descirption)"><i class="fa fa-info-circle"></i></button>
+                                                        </div>
+                                                </div>
+                                                <div class="main-kpi" id="{{hk}}"><div class="lds-dual-ring"></div></div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="charts flexrow">
+                                    <div class="flexitem productCharts" ng-repeat="c in p.hiddenCharts track by $index">
+                                            <div class="obj-header">
+                                                    <div class="obj-title">
+                                                        <h3>{{c.title}}</h3>
+                                                    </div>
+                                                    <div class="obj-btns">
+                                                        <button class="btn btn-clean btn-chart hidden-xs" ng-click="oc.expand(c)"><i class="fa fa-expand"></i></button>
+                                                    </div>
+                                            </div>
+                                            <div class="panel-body viz-panel-body">
+                                                <div class="objectPlaceholder" id="{{c}}"><div class="lds-dual-ring"></div></div>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+            <div class="panel-footer" ng-click="oc.activeProduct===$index ? oc.activeProduct = null : oc.activeProduct = $index; oc.handleObjects($index)">
+                <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+            </div>
+    </div>
+</div>
